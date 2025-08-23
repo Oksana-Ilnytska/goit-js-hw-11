@@ -29,11 +29,11 @@ export function clearGallery() {
 }
 
 
-const loaderEl = document.getElementById('loader');
+const loader = document.getElementById('loader');
 export function showLoader() {
-  loaderEl.classList.remove('hidden');
+  loader.classList.remove('hidden');
 }
 
 export function hideLoader() {
-  loaderEl.classList.add('hidden');
+  loader.classList.add('hidden');
 }

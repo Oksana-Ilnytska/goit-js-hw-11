@@ -16,20 +16,34 @@ searchForm.addEventListener('submit', (event) => {
   
     getImagesByQuery(query)
       .then(data => {
-        if (!data.hits || data.hits.length === 0) {
+        if (!data || data.totalHits === 0 || !data.hits || data.hits.length <= 0) {
           iziToast.error({  
-            message: `Sorry, there are no images matching your search ${query}. Please try again!` 
+            message: `Sorry, there are no images matching your search ${query}. Please try again!`,
+          position: 'bottomCenter',
+          timeout: 5000,
+          backgroundColor: '#EF4040',
+          messageColor: '#FAFAFB',
+          class: 'error-toast',
+          close: true
           });
         } else {
-          createGallery(data.hits);
+        const limitedHits = data.hits.slice(0, 9);
+          createGallery(limitedHits);
         }
       })
       .catch(error => {
         iziToast.error({ 
-          message: error.message 
+          message: error.message,
+          position: 'bottomCenter',
+          timeout: 5000,
+          backgroundColor: '#EF4040',
+          messageColor: '#FAFAFB',
+          class: 'error-toast'
         });
       })
       .finally(() => {
         hideLoader();
       });
   });
+
+  

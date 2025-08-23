@@ -16,7 +16,7 @@ export async function getImagesByQuery(query) {
     });
     return response.data;
   } catch (error) {
-    throw new Error('Помилка при отриманні зображень');
+    throw new Error('Error');
   }
 }
 
